@@ -5,22 +5,22 @@ const rock = document.querySelector(".rock");
 // Assigned user choice by click on img
 let userChoice;
 scissors.addEventListener("click", function () {
-	userChoice = "scissors";
+	userChoice = "nożyce";
     getResult();
 });
 paper.addEventListener("click", function () {
-	userChoice = "paper";
+	userChoice = "papier";
     getResult();
 });
 rock.addEventListener("click", function () {
-	userChoice = "rock";
+	userChoice = "kamień";
 	getResult();
 });
 
 // Generating random computer choice
 
 function getRandomChoice() {
-	const choiceArray = ["scissors", "paper", "rock"];
+	const choiceArray = ["nożyce", "papier", "kamień"];
 	const randomIndex = Math.floor(Math.random() * choiceArray.length);
 	return choiceArray[randomIndex];
 }
@@ -29,36 +29,40 @@ function getRandomChoice() {
 
 function getResult(){
 
+    let computerWin = "wygrywa komputer!";
+    let draw = "mamy remis!";
+    let playerWin = "wygrywa gracz";
+    let result;
     const computerChoice = getRandomChoice();
     
-    if((userChoice==="scissors") && (computerChoice==="scissors")){
-        console.log('Remis!')
+    if((userChoice==="nożyce") && (computerChoice==="nożyce")){
+        result = draw;
     }
-    else if((userChoice==="scissors") && (computerChoice==="rock")){
-        console.log('Wygrywa komputer!')
+    else if((userChoice==="nożyce") && (computerChoice==="kamień")){
+        result = computerWin
     }
-    else if((userChoice==="scissors") && (computerChoice==="paper")){
-        console.log('Wygrywa gracz!')
+    else if((userChoice==="nożyce") && (computerChoice==="papier")){
+        result = playerWin;
     }
-    else if((userChoice==="rock") && (computerChoice==="scissors")){
-        console.log('Wygrywa gracz!')
+    else if((userChoice==="kamień") && (computerChoice==="nożyce")){
+        result = playerWin;
     }
-    else if((userChoice==="rock") && (computerChoice==="paper")){
-        console.log('Wygrywa komputer!')
+    else if((userChoice==="kamień") && (computerChoice==="papier")){
+        result = computerWin
     }
-    else if((userChoice==="rock") && (computerChoice==="rock")){
-        console.log('Remis!')
+    else if((userChoice==="kamień") && (computerChoice==="kamień")){
+        result = draw;
     }
-    else if((userChoice==="paper") && (computerChoice==="scissors")){
-        console.log('Wygrywa komputer!')
+    else if((userChoice==="papier") && (computerChoice==="nożyce")){
+        result = computerWin
     }
-    else if((userChoice==="paper") && (computerChoice==="rock")){
-        console.log('Wygrywa gracz!')
+    else if((userChoice==="papier") && (computerChoice==="kamień")){
+        result = playerWin;
     }
-    else if((userChoice==="paper") && (computerChoice==="paper")){
-        console.log('Remis!')
+    else if((userChoice==="papier") && (computerChoice==="papier")){
+        result = draw;
     }
-    
+    console.log(`Komputer wybral ${computerChoice} a gracz ${userChoice}. A więc ${result} `)
     
     
 }
