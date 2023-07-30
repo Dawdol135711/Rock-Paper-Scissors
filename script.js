@@ -8,6 +8,10 @@ const computerRock = document.querySelector(".computerrock");
 
 const reset = document.querySelector(".reset");
 const choice = document.querySelector(".choice");
+const message = document.querySelector(".message");
+const playerWon = "Wygrywa gracz!";
+const computerWon = "Wygrywa komputer!";
+const draw = "Remis!";
 // Assigned user choice by click on img
 reset.addEventListener("click", resetHiding);
 function resetHiding() {
@@ -21,6 +25,8 @@ function resetHiding() {
 		computerPaper.setAttribute("src", "img/paper1.jpg");
 		computerRock.setAttribute("src", "img/rock1.jpg");
 	});
+	reset.style.display = "none";
+	choice.style.display = "block";
 }
 let userChoice;
 scissors.addEventListener("click", function () {
@@ -90,30 +96,81 @@ function getResult() {
 			computerPaper.style.display = "none";
 		}
 	}
+
 	if (userChoice === "nożyce" && computerChoice === "nożyce") {
 		result = draw;
 	} else if (userChoice === "nożyce" && computerChoice === "kamień") {
 		result = computerWin;
-		scissors.setAttribute("src", "img/scissors2.jpg");
+		scissors.classList.add("fade-out");
+		// Ustaw obrazek na nowy po zakończeniu animacji (po 1 sekundzie)
+		setTimeout(() => {
+			scissors.setAttribute("src", "img/scissors2.jpg");
+			// Usuń klasę fade-out, aby przywrócić obrazek do widoczności
+			scissors.classList.remove("fade-out");
+		}, 1000);
 	} else if (userChoice === "nożyce" && computerChoice === "papier") {
 		result = playerWin;
-		computerPaper.setAttribute("src", "img/paper2.jpg");
+		computerPaper.classList.add("fade-out");
+		setTimeout(() => {
+			computerPaper.setAttribute("src", "img/paper2.jpg");
+
+			computerPaper.classList.remove("fade-out");
+		}, 1000);
 	} else if (userChoice === "kamień" && computerChoice === "nożyce") {
 		result = playerWin;
-		computerScissors.setAttribute("src", "img/scissors2.jpg");
+		computerScissors.classList.add("fade-out");
+		setTimeout(() => {
+			computerScissors.setAttribute("src", "img/scissors2.jpg");
+
+			computerScissors.classList.remove("fade-out");
+		}, 1000);
 	} else if (userChoice === "kamień" && computerChoice === "papier") {
 		result = computerWin;
-		rock.setAttribute("src", "img/rock2.jpg");
+		rock.classList.add("fade-out");
+		setTimeout(() => {
+			rock.setAttribute("src", "img/rock2.jpg");
+
+			rock.classList.remove("fade-out");
+		}, 1000);
 	} else if (userChoice === "kamień" && computerChoice === "kamień") {
 		result = draw;
 	} else if (userChoice === "papier" && computerChoice === "nożyce") {
 		result = computerWin;
-		paper.setAttribute("src", "img/paper2.jpg");
+		paper.classList.add("fade-out");
+		setTimeout(() => {
+			paper.setAttribute("src", "img/paper2.jpg");
+
+			paper.classList.remove("fade-out");
+		}, 1000);
 	} else if (userChoice === "papier" && computerChoice === "kamień") {
 		result = playerWin;
-		computerRock.setAttribute("src", "img/rock2.jpg");
+		computerRock.classList.add("fade-out");
+		setTimeout(() => {
+			computerRock.setAttribute("src", "img/rock2.jpg");
+
+			computerRock.classList.remove("fade-out");
+		}, 1000);
 	} else if (userChoice === "papier" && computerChoice === "papier") {
 		result = draw;
+	}
+	function bgcHandler() {
+		if (result === computerWin) {
+			message.style.backgroundColor = "red";
+		} else if (result === draw) {
+			message.style.backgroundColor = "orange";
+		} else {
+			message.style.backgroundColor = "rgb(26, 233, 7)";
+		}
+	}
+	function resultDisplay() {
+		setTimeout(() => {
+			message.style.opacity = "1";
+			bgcHandler();
+			message.innerHTML = ` ${result}`;
+			setTimeout(() => {
+				message.style.opacity = "0";
+			}, 1500);
+		}, 800);
 	}
 	hiderp();
 	hidesp();
@@ -122,6 +179,7 @@ function getResult() {
 	compHidesp();
 	compHiders();
 	replaceButton();
+	resultDisplay();
 	console.log(
 		`Komputer wybral ${computerChoice} a gracz ${userChoice}. A więc ${result} `
 	);
