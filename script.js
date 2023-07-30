@@ -2,6 +2,11 @@ const scissors = document.querySelector(".scissors");
 const paper = document.querySelector(".paper");
 const rock = document.querySelector(".rock");
 
+
+
+const computerScissors = document.querySelector(".computerscissors");
+const computerPaper = document.querySelector(".computerpaper");
+const computerRock = document.querySelector(".computerrock");
 // Assigned user choice by click on img
 let userChoice;
 scissors.addEventListener("click", function () {
@@ -34,9 +39,40 @@ function getResult() {
 	function hiderp() {
 		if (userChoice === "nożyce") {
 			rock.style.display = "none";
+			paper.style.display = "none";
 		}
 	}
-
+	function hiders() {
+		if (userChoice === "papier") {
+			rock.style.display = "none";
+			scissors.style.display = "none";
+		}
+	}
+	function hidesp() {
+		if (userChoice === "kamień") {
+			scissors.style.display = "none";
+			paper.style.display = "none";
+		}
+	}
+	// Computer choice hiding
+	function compHiderp() {
+		if (computerChoice === "nożyce") {
+			computerRock.style.display = "none";
+			computerPaper.style.display = "none";
+		}
+	}
+	function compHiders() {
+		if (computerChoice === "papier") {
+			computerRock.style.display = "none";
+			computerScissors.style.display = "none";
+		}
+	}
+	function compHidesp() {
+		if (computerChoice === "kamień") {
+			computerScissors.style.display = "none";
+			computerPaper.style.display = "none";
+		}
+	}
 	if (userChoice === "nożyce" && computerChoice === "nożyce") {
 		result = draw;
 	} else if (userChoice === "nożyce" && computerChoice === "kamień") {
@@ -57,6 +93,11 @@ function getResult() {
 		result = draw;
 	}
 	hiderp();
+	hidesp();
+	hiders();
+    compHiderp();
+    compHidesp();
+    compHiders();
 	console.log(
 		`Komputer wybral ${computerChoice} a gracz ${userChoice}. A więc ${result} `
 	);
