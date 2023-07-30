@@ -17,8 +17,10 @@ playerCount = 0;
 const computerCounter = document.querySelector(".count_2");
 computerCount = 0;
 function counter() {
-	playerCounter.innerHTML = playerCount;
-	computerCounter.innerHTML = computerCount;
+	setTimeout(() => {
+		playerCounter.innerHTML = playerCount;
+		computerCounter.innerHTML = computerCount;
+	}, 1000);
 }
 
 // Assigned user choice by click on img
@@ -36,19 +38,30 @@ function resetHiding() {
 	});
 	reset.style.display = "none";
 	choice.style.display = "block";
+    clickable=1;
 }
 let userChoice;
+let clickable = 1;
 scissors.addEventListener("click", function () {
-	userChoice = "nożyce";
-	getResult();
+	if (clickable === 1) {
+		userChoice = "nożyce";
+		getResult();
+		clickable = 0;
+	}
+	clickable = 0;
 });
 paper.addEventListener("click", function () {
-	userChoice = "papier";
-	getResult();
+	if (clickable === 1) {
+		userChoice = "papier";
+		getResult();
+	}
 });
 rock.addEventListener("click", function () {
-	userChoice = "kamień";
-	getResult();
+	if (clickable === 1) {
+		userChoice = "kamień";
+		getResult();
+	}
+	clickable = 0;
 });
 
 // Generating random computer choice
@@ -59,10 +72,11 @@ function getRandomChoice() {
 	return choiceArray[randomIndex];
 }
 function replaceButton() {
-    setTimeout(()=>{
-	reset.style.display = "block";
 	choice.style.display = "none";
-},1500);}
+	setTimeout(() => {
+		reset.style.display = "block";
+	}, 3000);
+}
 function getResult() {
 	let computerWin = "wygrywa komputer!";
 	let draw = "mamy remis!";
