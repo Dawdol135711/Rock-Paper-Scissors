@@ -59,9 +59,10 @@ function getRandomChoice() {
 	return choiceArray[randomIndex];
 }
 function replaceButton() {
+    setTimeout(()=>{
 	reset.style.display = "block";
 	choice.style.display = "none";
-}
+},1500);}
 function getResult() {
 	let computerWin = "wygrywa komputer!";
 	let draw = "mamy remis!";

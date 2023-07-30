@@ -43,6 +43,7 @@ h2 {
 	transform: translatex(-50%);
 }
 .wrapper {
+	padding-top: 3rem;
 	width: 80%;
 	min-height: 100vh;
 	margin: auto;
@@ -88,6 +89,10 @@ img {
 	opacity: 1;
 }
 .message {
+	position: absolute;
+	top: 50vh;
+	left: 50%;
+	transform: translatex(-50%);
 	opacity: 0;
 }
 
@@ -107,7 +112,7 @@ img {
 	align-items: center;
 	color: rgb(0, 0, 0);
 	font-size: 4rem;
-	font-family: 'Julee', cursive;
+	font-family: "Julee", cursive;
 }
 .counter.player {
 	bottom: 0.1vh;
