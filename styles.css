@@ -83,14 +83,35 @@ img {
 		color: black;
 	}
 }
-.message {
-	opacity: 0;
-}
 .images {
 	transition: opacity 1s;
 	opacity: 1;
 }
+.message {
+	opacity: 0;
+}
 
 .images.fade-out {
 	opacity: 0;
+}
+.counter {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	background-color: rgba(8, 243, 40, 0.6);
+	box-shadow: 5px 3px 5px black;
+	position: absolute;
+	right: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: rgb(0, 0, 0);
+	font-size: 4rem;
+	font-family: 'Julee', cursive;
+}
+.counter.player {
+	bottom: 0.1vh;
+}
+.counter.computer {
+	bottom: 45vh;
 }

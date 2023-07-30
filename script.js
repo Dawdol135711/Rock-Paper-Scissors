@@ -12,6 +12,15 @@ const message = document.querySelector(".message");
 const playerWon = "Wygrywa gracz!";
 const computerWon = "Wygrywa komputer!";
 const draw = "Remis!";
+const playerCounter = document.querySelector(".count_1");
+playerCount = 0;
+const computerCounter = document.querySelector(".count_2");
+computerCount = 0;
+function counter() {
+	playerCounter.innerHTML = playerCount;
+	computerCounter.innerHTML = computerCount;
+}
+
 // Assigned user choice by click on img
 reset.addEventListener("click", resetHiding);
 function resetHiding() {
@@ -101,6 +110,7 @@ function getResult() {
 		result = draw;
 	} else if (userChoice === "nożyce" && computerChoice === "kamień") {
 		result = computerWin;
+		computerCount += 1;
 		scissors.classList.add("fade-out");
 		// Ustaw obrazek na nowy po zakończeniu animacji (po 1 sekundzie)
 		setTimeout(() => {
@@ -110,6 +120,7 @@ function getResult() {
 		}, 1000);
 	} else if (userChoice === "nożyce" && computerChoice === "papier") {
 		result = playerWin;
+		playerCount += 1;
 		computerPaper.classList.add("fade-out");
 		setTimeout(() => {
 			computerPaper.setAttribute("src", "img/paper2.jpg");
@@ -118,6 +129,7 @@ function getResult() {
 		}, 1000);
 	} else if (userChoice === "kamień" && computerChoice === "nożyce") {
 		result = playerWin;
+		playerCount += 1;
 		computerScissors.classList.add("fade-out");
 		setTimeout(() => {
 			computerScissors.setAttribute("src", "img/scissors2.jpg");
@@ -126,6 +138,7 @@ function getResult() {
 		}, 1000);
 	} else if (userChoice === "kamień" && computerChoice === "papier") {
 		result = computerWin;
+		computerCount += 1;
 		rock.classList.add("fade-out");
 		setTimeout(() => {
 			rock.setAttribute("src", "img/rock2.jpg");
@@ -136,6 +149,7 @@ function getResult() {
 		result = draw;
 	} else if (userChoice === "papier" && computerChoice === "nożyce") {
 		result = computerWin;
+		computerCount += 1;
 		paper.classList.add("fade-out");
 		setTimeout(() => {
 			paper.setAttribute("src", "img/paper2.jpg");
@@ -144,6 +158,7 @@ function getResult() {
 		}, 1000);
 	} else if (userChoice === "papier" && computerChoice === "kamień") {
 		result = playerWin;
+		playerCount += 1;
 		computerRock.classList.add("fade-out");
 		setTimeout(() => {
 			computerRock.setAttribute("src", "img/rock2.jpg");
@@ -180,6 +195,7 @@ function getResult() {
 	compHiders();
 	replaceButton();
 	resultDisplay();
+	counter();
 	console.log(
 		`Komputer wybral ${computerChoice} a gracz ${userChoice}. A więc ${result} `
 	);
