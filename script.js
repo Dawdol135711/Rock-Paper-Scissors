@@ -2,12 +2,22 @@ const scissors = document.querySelector(".scissors");
 const paper = document.querySelector(".paper");
 const rock = document.querySelector(".rock");
 
-
-
 const computerScissors = document.querySelector(".computerscissors");
 const computerPaper = document.querySelector(".computerpaper");
 const computerRock = document.querySelector(".computerrock");
+
+const reset = document.querySelector(".reset");
 // Assigned user choice by click on img
+reset.addEventListener("click", resetHiding);
+function resetHiding() {
+	const images = document.querySelectorAll("img");
+	images.forEach((img) => {
+		img.style.display = "inline-block";
+        scissors.setAttribute("src", "img/scissors1.jpg");
+        paper.setAttribute("src", "img/paper1.jpg");
+        rock.setAttribute("src", "img/rock1.jpg");
+	});
+}
 let userChoice;
 scissors.addEventListener("click", function () {
 	userChoice = "nożyce";
@@ -77,6 +87,7 @@ function getResult() {
 		result = draw;
 	} else if (userChoice === "nożyce" && computerChoice === "kamień") {
 		result = computerWin;
+		scissors.setAttribute("src", "img/scissors2.jpg");
 	} else if (userChoice === "nożyce" && computerChoice === "papier") {
 		result = playerWin;
 	} else if (userChoice === "kamień" && computerChoice === "nożyce") {
@@ -95,9 +106,9 @@ function getResult() {
 	hiderp();
 	hidesp();
 	hiders();
-    compHiderp();
-    compHidesp();
-    compHiders();
+	compHiderp();
+	compHidesp();
+	compHiders();
 	console.log(
 		`Komputer wybral ${computerChoice} a gracz ${userChoice}. A więc ${result} `
 	);
